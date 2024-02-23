@@ -31,6 +31,17 @@ values
 
 select * from employee;
 
+create table temp1(
+id int unique
+);
+
+insert into temp1 values(101);
+insert into temp1 values(102);
+
+select * from temp1;
+
+
+
 
 
 
