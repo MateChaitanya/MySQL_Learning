@@ -158,3 +158,99 @@ mysql> select * from student;
 |    103 | Ram   |
 +--------+-------+
 3 rows in set (0.00 sec)
+================================================================================================================================================================
+//New Database is created 
+
+mysql> create database xyz_company;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use xyz_company;
+Database changed
+mysql> create table employee(
+    -> id int primary key,
+    -> name varchar(100),
+    -> salary int
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into employee
+    -> (id , name , salary)
+    -> values
+    -> (1,"Adam",25000),
+    -> (2,"Bob",30000),
+    -> (3,"Casey",40000);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+-------+--------+
+| id | name  | salary |
++----+-------+--------+
+|  1 | Adam  |  25000 |
+|  2 | Bob   |  30000 |
+|  3 | Casey |  40000 |
++----+-------+--------+
+3 rows in set (0.00 sec) 
+==================================================================================================================================================================
+// Constraints:- It is used to specify rules for data in table 
+
+mysql> create table emp(
+    -> id int,
+    -> salary int default 26000);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into emp(id) values (101);
+Query OK, 1 row affected (0.01 sec)
+
+===================================================================================================================================================================
+//New Database is created 
+
+mysql> create database college;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use college;
+Database changed
+mysql> create table student(
+    -> rollno int primary key,
+    -> name varchar(50),
+    -> marks int not null,
+    -> grade varchar(1),
+    -> city varchar(20)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| student           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO student (rollno, name, marks, grade, city)
+    -> VALUES
+    ->     (101, "Ramu", 77, "C", "Mumbai"),
+    ->     (102, "Tush", 88, "A", "Padali"),
+    ->     (103, "Nachi", 89, "A", "Pune"),
+    ->     (104, "Piyush", 88, "A", "Malegaon"),
+    ->     (105, "RK", 82, "B", "Shrigonda"),
+    ->     (106, "Sushant", 81, "B", "Satana");
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------+---------+-------+-------+-----------+
+| rollno | name    | marks | grade | city      |
++--------+---------+-------+-------+-----------+
+|    101 | Ramu    |    77 | C     | Mumbai    |
+|    102 | Tush    |    88 | A     | Padali    |
+|    103 | Nachi   |    89 | A     | Pune      |
+|    104 | Piyush  |    88 | A     | Malegaon  |
+|    105 | RK      |    82 | B     | Shrigonda |
+|    106 | Sushant |    81 | B     | Satana    |
++--------+---------+-------+-------+-----------+
+6 rows in set (0.00 sec)
+
+
+
+
