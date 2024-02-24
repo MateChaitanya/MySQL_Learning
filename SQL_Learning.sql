@@ -109,3 +109,52 @@ Query OK, 0 rows affected (0.02 sec)
 mysql> select * from customers ;
 /* ERROR 1146 (42S02): Table 'db1.customers' doesn't exist*/
 -------------------------------------------------------------------------------------------------
+//New Database is created 
+ 
+mysql> create database college;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| college            |
+| db1                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sra                |
+| user_data          |
++--------------------+
+7 rows in set (0.00 sec)
+mysql> use college;
+Database changed
+ 
+mysql> create table student(
+    -> rollno int primary key,
+    -> name varchar(50)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from student;
+Empty set (0.00 sec)
+
+// Value is inserted into student table
+mysql> insert into student(
+    -> rollno,name)
+    -> values
+    -> (101,"karan"),
+    -> (102,"Arjun"),
+    -> (103,"Ram");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++--------+-------+
+| rollno | name  |
++--------+-------+
+|    101 | karan |
+|    102 | Arjun |
+|    103 | Ram   |
++--------+-------+
+3 rows in set (0.00 sec)
