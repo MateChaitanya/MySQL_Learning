@@ -339,6 +339,16 @@ mysql> select * from student where marks > 80 OR city  = "Satana";
 |    106 | Sushant |    81 | B     | Satana    |
 +--------+---------+-------+-------+-----------+
 5 rows in set (0.00 sec)
+mysql> select * from student where city not in ("Pune","Satana");
++--------+--------+-------+-------+-----------+
+| rollno | name   | marks | grade | city      |
++--------+--------+-------+-------+-----------+
+|    101 | Ramu   |    77 | C     | Mumbai    |
+|    102 | Tush   |    88 | A     | Padali    |
+|    104 | Piyush |    88 | A     | Malegaon  |
+|    105 | RK     |    82 | B     | Shrigonda |
++--------+--------+-------+-------+-----------+
+4 rows in set (0.00 sec)
 
 
 
