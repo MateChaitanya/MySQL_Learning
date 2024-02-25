@@ -250,6 +250,95 @@ mysql> select * from student;
 |    106 | Sushant |    81 | B     | Satana    |
 +--------+---------+-------+-------+-----------+
 6 rows in set (0.00 sec)
+===========================================================================================================================================================
+mysql> select city from student;
++-----------+
+| city      |
++-----------+
+| Mumbai    |
+| Padali    |
+| Pune      |
+| Malegaon  |
+| Shrigonda |
+| Satana    |
++-----------+
+6 rows in set (0.00 sec)
+
+====Distinct word -> For unique words
+
+mysql> select Distinct city from student;
++-----------+
+| city      |
++-----------+
+| Mumbai    |
+| Padali    |
+| Pune      |
+| Malegaon  |
+| Shrigonda |
+| Satana    |
++-----------+
+6 rows in set (0.00 sec)
+
+===== Where clause -> Define some condition 
+
+mysql> select * from student where marks > 80;
++--------+---------+-------+-------+-----------+
+| rollno | name    | marks | grade | city      |
++--------+---------+-------+-------+-----------+
+|    102 | Tush    |    88 | A     | Padali    |
+|    103 | Nachi   |    89 | A     | Pune      |
+|    104 | Piyush  |    88 | A     | Malegaon  |
+|    105 | RK      |    82 | B     | Shrigonda |
+|    106 | Sushant |    81 | B     | Satana    |
++--------+---------+-------+-------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student where city = " Mumbai ";
+Empty set (0.00 sec)
+
+mysql> select * from student where city = "Padali";
++--------+------+-------+-------+--------+
+| rollno | name | marks | grade | city   |
++--------+------+-------+-------+--------+
+|    102 | Tush |    88 | A     | Padali |
++--------+------+-------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where marks+10 > 100;
+Empty set (0.00 sec)
+
+mysql> select * from student where marks+20 > 100;
++--------+---------+-------+-------+-----------+
+| rollno | name    | marks | grade | city      |
++--------+---------+-------+-------+-----------+
+|    102 | Tush    |    88 | A     | Padali    |
+|    103 | Nachi   |    89 | A     | Pune      |
+|    104 | Piyush  |    88 | A     | Malegaon  |
+|    105 | RK      |    82 | B     | Shrigonda |
+|    106 | Sushant |    81 | B     | Satana    |
++--------+---------+-------+-------+-----------+
+5 rows in set (0.00 sec)
+
+// AND , OR Operator 
+mysql> select * from student where marks > 80 and city = "Pune";
++--------+-------+-------+-------+------+
+| rollno | name  | marks | grade | city |
++--------+-------+-------+-------+------+
+|    103 | Nachi |    89 | A     | Pune |
++--------+-------+-------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where marks > 80 OR city  = "Satana";
++--------+---------+-------+-------+-----------+
+| rollno | name    | marks | grade | city      |
++--------+---------+-------+-------+-----------+
+|    102 | Tush    |    88 | A     | Padali    |
+|    103 | Nachi   |    89 | A     | Pune      |
+|    104 | Piyush  |    88 | A     | Malegaon  |
+|    105 | RK      |    82 | B     | Shrigonda |
+|    106 | Sushant |    81 | B     | Satana    |
++--------+---------+-------+-------+-----------+
+5 rows in set (0.00 sec)
 
 
 
