@@ -350,6 +350,106 @@ mysql> select * from student where city not in ("Pune","Satana");
 +--------+--------+-------+-------+-----------+
 4 rows in set (0.00 sec)
 
+=======================================================================================================================================
+//Limit clause 
+mysql> select * from student limit 3;
++--------+-------+-------+-------+--------+
+| rollno | name  | marks | grade | city   |
++--------+-------+-------+-------+--------+
+|    101 | Ramu  |    77 | C     | Mumbai |
+|    102 | Tush  |    88 | A     | Padali |
+|    103 | Nachi |    89 | A     | Pune   |
++--------+-------+-------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where marks > 75 limit 3;
++--------+-------+-------+-------+--------+
+| rollno | name  | marks | grade | city   |
++--------+-------+-------+-------+--------+
+|    101 | Ramu  |    77 | C     | Mumbai |
+|    102 | Tush  |    88 | A     | Padali |
+|    103 | Nachi |    89 | A     | Pune   |
++--------+-------+-------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where marks < 75 limit 3;
+Empty set (0.00 sec)
+
+mysql> select * from student order by city asc;
++--------+---------+-------+-------+-----------+
+| rollno | name    | marks | grade | city      |
++--------+---------+-------+-------+-----------+
+|    104 | Piyush  |    88 | A     | Malegaon  |
+|    101 | Ramu    |    77 | C     | Mumbai    |
+|    102 | Tush    |    88 | A     | Padali    |
+|    103 | Nachi   |    89 | A     | Pune      |
+|    106 | Sushant |    81 | B     | Satana    |
+|    105 | RK      |    82 | B     | Shrigonda |
++--------+---------+-------+-------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student order by marks asc;
++--------+---------+-------+-------+-----------+
+| rollno | name    | marks | grade | city      |
++--------+---------+-------+-------+-----------+
+|    101 | Ramu    |    77 | C     | Mumbai    |
+|    106 | Sushant |    81 | B     | Satana    |
+|    105 | RK      |    82 | B     | Shrigonda |
+|    102 | Tush    |    88 | A     | Padali    |
+|    104 | Piyush  |    88 | A     | Malegaon  |
+|    103 | Nachi   |    89 | A     | Pune      |
++--------+---------+-------+-------+-----------+
+6 rows in set (0.00 sec)
+===========================================================================================================================================
+
+//Aggregate function 
+
+mysql> select max(marks) from student;
++------------+
+| max(marks) |
++------------+
+|         89 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(marks)from student ;
++------------+
+| avg(marks) |
++------------+
+|    84.1667 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select count(name) from student;
++-------------+
+| count(name) |
++-------------+
+|           6 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(marks) from student;
++------------+
+| sum(marks) |
++------------+
+|        505 |
++------------+
+1 row in set (0.00 sec)
+
+//Group by clause
+mysql> select city from student group by city;
++-----------+
+| city      |
++-----------+
+| Mumbai    |
+| Padali    |
+| Pune      |
+| Malegaon  |
+| Shrigonda |
+| Satana    |
++-----------+
+6 rows in set (0.00 sec)
+
 
 
 
