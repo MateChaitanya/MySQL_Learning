@@ -435,7 +435,7 @@ mysql> select sum(marks) from student;
 |        505 |
 +------------+
 1 row in set (0.00 sec)
-
+======================================================================================================================
 //Group by clause
 mysql> select city from student group by city;
 +-----------+
@@ -448,7 +448,276 @@ mysql> select city from student group by city;
 | Shrigonda |
 | Satana    |
 +-----------+
+6 rows in set (0.00 sec
+
+mysql> select city , count(rollno) from student ;
++--------+---------------+
+| city   | count(rollno) |
++--------+---------------+
+| Mumbai |             6 |
++--------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select city , count(rollno) from student group by city;
++-----------+---------------+
+| city      | count(rollno) |
++-----------+---------------+
+| Mumbai    |             1 |
+| Padali    |             1 |
+| Pune      |             1 |
+| Malegaon  |             1 |
+| Shrigonda |             1 |
+| Satana    |             1 |
++-----------+---------------+
 6 rows in set (0.00 sec)
+
+mysql> select city , avg(marks) from student group by city order by city ;
++-----------+------------+
+| city      | avg(marks) |
++-----------+------------+
+| Malegaon  |    88.0000 |
+| Mumbai    |    77.0000 |
+| Padali    |    88.0000 |
+| Pune      |    89.0000 |
+| Satana    |    81.0000 |
+| Shrigonda |    82.0000 |
++-----------+------------+
+6 rows in set (0.01 sec)
+
+mysql> select city , avg(marks) from student group by city order by marks ;
++-----------+------------+
+| city      | avg(marks) |
++-----------+------------+
+| Mumbai    |    77.0000 |
+| Satana    |    81.0000 |
+| Shrigonda |    82.0000 |
+| Padali    |    88.0000 |
+| Malegaon  |    88.0000 |
+| Pune      |    89.0000 |
++-----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select grade from student group byy grade;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'byy grade' at line 1
+mysql> select grade from student group by grade;
++-------+
+| grade |
++-------+
+| C     |
+| A     |
+| B     |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> select grade from student group by grade order by grade;
++-------+
+| grade |
++-------+
+| A     |
+| B     |
+| C     |
++-------+
+3 rows in set (0.00 sec)
+
+mysql> select grade,count(rollno) from student group by grade order by grade;
++-------+---------------+
+| grade | count(rollno) |
++-------+---------------+
+| A     |             3 |
+| B     |             2 |
+| C     |             1 |
++-------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> select count(name),city from student group by city having max(marks) > 90;
+Empty set (0.01 sec)
+
+mysql> select count(name),city from student group by city having max(marks) > 80;
++-------------+-----------+
+| count(name) | city      |
++-------------+-----------+
+|           1 | Padali    |
+|           1 | Pune      |
+|           1 | Malegaon  |
+|           1 | Shrigonda |
+|           1 | Satana    |
++-------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> update student set grade ="0"
+    -> where grade = "A";
+Query OK, 3 rows affected (0.03 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from student ;
++--------+---------+-------+-------+-----------+
+| rollno | name    | marks | grade | city      |
++--------+---------+-------+-------+-----------+
+|    101 | Ramu    |    77 | C     | Mumbai    |
+|    102 | Tush    |    88 | 0     | Padali    |
+|    103 | Nachi   |    89 | 0     | Pune      |
+|    104 | Piyush  |    88 | 0     | Malegaon  |
+|    105 | RK      |    82 | B     | Shrigonda |
+|    106 | Sushant |    81 | B     | Satana    |
++--------+---------+-------+-------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> update student set grade ="A"
+    -> where marks between 85 and 90;
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from student ;
++--------+---------+-------+-------+-----------+
+| rollno | name    | marks | grade | city      |
++--------+---------+-------+-------+-----------+
+|    101 | Ramu    |    77 | C     | Mumbai    |
+|    102 | Tush    |    88 | A     | Padali    |
+|    103 | Nachi   |    89 | A     | Pune      |
+|    104 | Piyush  |    88 | A     | Malegaon  |
+|    105 | RK      |    82 | B     | Shrigonda |
+|    106 | Sushant |    81 | B     | Satana    |
++--------+---------+-------+-------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> create table dept(
+    -> id int primary key,
+    -> name varchar(50)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| dept              |
+| student           |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> create table teacher (
+    -> id int primary key,
+    -> name varchar(60),
+    -> dept_id int,
+    -> foreign key (dept_id) references dept(id)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| dept              |
+| student           |
+| teacher           |
++-------------------+
+3 rows in set (0.00 sec)
+
+=====================================================================================================================
+//Cascading for foreign key
+
+mysql> drop table teacher;
+Query OK, 0 rows affected (0.02 sec)
+ 
+mysql> create table teacher (
+    ->     id int primary key,
+    ->     name varchar(60),
+    ->     dept_id int,
+    ->     foreign key (dept_id) references dept(id)
+    ->     on update cascade
+    ->     on delete cascade
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| dept              |
+| student           |
+| teacher           |
++-------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into dept
+    -> values
+    -> (101,"English"),
+    -> (102,"IT");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from dept;
++-----+---------+
+| id  | name    |
++-----+---------+
+| 101 | English |
+| 102 | IT      |
++-----+---------+
+2 rows in set (0.00 sec)
+
+mysql> insert into teacher
+    -> values
+    -> (101,"Adam",101),
+    -> (102,"Eve",102);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from teacher;
++-----+------+---------+
+| id  | name | dept_id |
++-----+------+---------+
+| 101 | Adam |     101 |
+| 102 | Eve  |     102 |
++-----+------+---------+
+2 rows in set (0.00 sec)
+
+mysql> update dept
+    -> set id =103
+    -> where id = 102;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from dept;
++-----+---------+
+| id  | name    |
++-----+---------+
+| 101 | English |
+| 103 | IT      |
++-----+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from teacher;
++-----+------+---------+
+| id  | name | dept_id |
++-----+------+---------+
+| 101 | Adam |     101 |
+| 102 | Eve  |     103 |
++-----+------+---------+
+2 rows in set (0.00 sec)
+
+mysql> update dept
+    -> set id =103
+    -> where id = 102;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from dept;
++-----+---------+
+| id  | name    |
++-----+---------+
+| 101 | English |
+| 103 | IT      |
++-----+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from teacher;
++-----+------+---------+
+| id  | name | dept_id |
++-----+------+---------+
+| 101 | Adam |     101 |
+| 102 | Eve  |     103 |
++-----+------+---------+
+2 rows in set (0.00 sec)
 
 
 
