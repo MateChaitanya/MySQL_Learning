@@ -831,6 +831,80 @@ mysql> select * from student ;
 +--------+---------+-------+-------+-----------+---------+
 7 rows in set (0.00 sec)
 
+============================================================================================================================
+// Joins in sql 
+
+mysql>  show  tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| dept              |
+| student           |
+| teacher           |
++-------------------+
+3 rows in set (0.03 sec)
+
+mysql> create table studentt(
+    -> id int primary key,
+    -> name varchar(50)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into studentt ( id , name )
+    -> values
+    -> (101,"Adam"),
+    -> (102,"bob"),
+    -> (103,"Casey");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> create table course (
+    -> id int primary key,
+    -> course varchar(80)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into course ( id , course )
+    -> values
+    -> (102,"English"),
+    -> (103,"Math"),
+    -> (104,"Science"),
+    -> (107,"Computer Science ");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from studentt;
++-----+-------+
+| id  | name  |
++-----+-------+
+| 101 | Adam  |
+| 102 | bob   |
+| 103 | Casey |
++-----+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from course;
++-----+-------------------+
+| id  | course            |
++-----+-------------------+
+| 102 | English           |
+| 103 | Math              |
+| 104 | Science           |
+| 107 | Computer Science  |
++-----+-------------------+
+4 rows in set (0.00 sec)
+
+//Inner Join 
+
+mysql> select * from studentt inner join course
+    -> on studentt.id = course.id;
++-----+-------+-----+---------+
+| id  | name  | id  | course  |
++-----+-------+-----+---------+
+| 102 | bob   | 102 | English |
+| 103 | Casey | 103 | Math    |
++-----+-------+-----+---------+
+2 rows in set (0.00 sec) 
 
 
 
