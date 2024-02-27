@@ -719,6 +719,118 @@ mysql> select * from teacher;
 +-----+------+---------+
 2 rows in set (0.00 sec)
 
+==================================================================================================================================
+
+mysql> alter table student
+    -> add column age int;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student ;
++--------+---------+-------+-------+-----------+------+
+| rollno | name    | marks | grade | city      | age  |
++--------+---------+-------+-------+-----------+------+
+|    101 | Ramu    |    77 | C     | Mumbai    | NULL |
+|    102 | Tush    |    88 | A     | Padali    | NULL |
+|    103 | Nachi   |    89 | A     | Pune      | NULL |
+|    104 | Piyush  |    88 | A     | Malegaon  | NULL |
+|    105 | RK      |    82 | B     | Shrigonda | NULL |
+|    106 | Sushant |    81 | B     | Satana    | NULL |
++--------+---------+-------+-------+-----------+------+
+6 rows in set (0.00 sec)
+ 
+mysql> alter table student
+    -> drop column age ;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student ;
++--------+---------+-------+-------+-----------+
+| rollno | name    | marks | grade | city      |
++--------+---------+-------+-------+-----------+
+|    101 | Ramu    |    77 | C     | Mumbai    |
+|    102 | Tush    |    88 | A     | Padali    |
+|    103 | Nachi   |    89 | A     | Pune      |
+|    104 | Piyush  |    88 | A     | Malegaon  |
+|    105 | RK      |    82 | B     | Shrigonda |
+|    106 | Sushant |    81 | B     | Satana    |
++--------+---------+-------+-------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> alter table student
+    -> add column age int not null default 19 ;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student ;
++--------+---------+-------+-------+-----------+-----+
+| rollno | name    | marks | grade | city      | age |
++--------+---------+-------+-------+-----------+-----+
+|    101 | Ramu    |    77 | C     | Mumbai    |  19 |
+|    102 | Tush    |    88 | A     | Padali    |  19 |
+|    103 | Nachi   |    89 | A     | Pune      |  19 |
+|    104 | Piyush  |    88 | A     | Malegaon  |  19 |
+|    105 | RK      |    82 | B     | Shrigonda |  19 |
+|    106 | Sushant |    81 | B     | Satana    |  19 |
++--------+---------+-------+-------+-----------+-----+
+6 rows in set (0.00 sec)
+
+mysql> alter table student
+    -> modify column age varchar(2);
+Query OK, 6 rows affected (0.05 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from student ;
++--------+---------+-------+-------+-----------+------+
+| rollno | name    | marks | grade | city      | age  |
++--------+---------+-------+-------+-----------+------+
+|    101 | Ramu    |    77 | C     | Mumbai    | 19   |
+|    102 | Tush    |    88 | A     | Padali    | 19   |
+|    103 | Nachi   |    89 | A     | Pune      | 19   |
+|    104 | Piyush  |    88 | A     | Malegaon  | 19   |
+|    105 | RK      |    82 | B     | Shrigonda | 19   |
+|    106 | Sushant |    81 | B     | Satana    | 19   |
++--------+---------+-------+-------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> alter table student
+    -> change age stu_age int ;
+Query OK, 6 rows affected (0.04 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from student ;
++--------+---------+-------+-------+-----------+---------+
+| rollno | name    | marks | grade | city      | stu_age |
++--------+---------+-------+-------+-----------+---------+
+|    101 | Ramu    |    77 | C     | Mumbai    |      19 |
+|    102 | Tush    |    88 | A     | Padali    |      19 |
+|    103 | Nachi   |    89 | A     | Pune      |      19 |
+|    104 | Piyush  |    88 | A     | Malegaon  |      19 |
+|    105 | RK      |    82 | B     | Shrigonda |      19 |
+|    106 | Sushant |    81 | B     | Satana    |      19 |
++--------+---------+-------+-------+-----------+---------+
+6 rows in set (0.00 sec)
+
+mysql> insert into student
+    -> (rollno , name , marks , stu_age)
+    -> values
+    -> (107,"Swaraj",68,100);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student ;
++--------+---------+-------+-------+-----------+---------+
+| rollno | name    | marks | grade | city      | stu_age |
++--------+---------+-------+-------+-----------+---------+
+|    101 | Ramu    |    77 | C     | Mumbai    |      19 |
+|    102 | Tush    |    88 | A     | Padali    |      19 |
+|    103 | Nachi   |    89 | A     | Pune      |      19 |
+|    104 | Piyush  |    88 | A     | Malegaon  |      19 |
+|    105 | RK      |    82 | B     | Shrigonda |      19 |
+|    106 | Sushant |    81 | B     | Satana    |      19 |
+|    107 | Swaraj  |    68 | NULL  | NULL      |     100 |
++--------+---------+-------+-------+-----------+---------+
+7 rows in set (0.00 sec)
+
 
 
 
