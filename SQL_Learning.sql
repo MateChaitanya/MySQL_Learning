@@ -906,5 +906,78 @@ mysql> select * from studentt inner join course
 +-----+-------+-----+---------+
 2 rows in set (0.00 sec) 
 
+//Left Join 
+mysql>  select * from studentt as a
+    -> left join course as b
+    -> on a.id = b.id;
++-----+-------+------+---------+
+| id  | name  | id   | course  |
++-----+-------+------+---------+
+| 101 | Adam  | NULL | NULL    |
+| 102 | bob   |  102 | English |
+| 103 | Casey |  103 | Math    |
++-----+-------+------+---------+
+3 rows in set (0.00 sec)
+
+//Right Join 
+mysql>  select * from studentt as a
+    -> right join course as b
+    -> on a.id = b.id;
++------+-------+-----+-------------------+
+| id   | name  | id  | course            |
++------+-------+-----+-------------------+
+|  102 | bob   | 102 | English           |
+|  103 | Casey | 103 | Math              |
+| NULL | NULL  | 104 | Science           |
+| NULL | NULL  | 107 | Computer Science  |
++------+-------+-----+-------------------+
+4 rows in set (0.00 sec)
+
+//Full Join 
+mysql> select * from studentt as a
+    -> left join course as b
+    -> on a.id = b.id
+    -> union
+    -> select * from studentt as a
+    -> right join course as b
+    -> on a.id = b.id;
++------+-------+------+-------------------+
+| id   | name  | id   | course            |
++------+-------+------+-------------------+
+|  101 | Adam  | NULL | NULL              |
+|  102 | bob   |  102 | English           |
+|  103 | Casey |  103 | Math              |
+| NULL | NULL  |  104 | Science           |
+| NULL | NULL  |  107 | Computer Science  |
++------+-------+------+-------------------+
+5 rows in set (0.01 sec)
+
+mysql>  create table employee (
+    -> id int primary key,
+    -> name varchar(60),
+    -> manager_id int
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+ 
+mysql> insert into employee (id, name, manager_id)
+    -> values
+    -> (101, "Adam", 103),
+    -> (102, "Bob", 104),
+    -> (103, "Casey", Null),
+    -> (104, "Donald", 103);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++-----+--------+------------+
+| id  | name   | manager_id |
++-----+--------+------------+
+| 101 | Adam   |        103 |
+| 102 | Bob    |        104 |
+| 103 | Casey  |       NULL |
+| 104 | Donald |        103 |
++-----+--------+------------+
+4 rows in set (0.00 sec)
+
 
 
