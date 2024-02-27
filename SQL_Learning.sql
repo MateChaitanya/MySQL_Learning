@@ -979,5 +979,75 @@ mysql> select * from employee;
 +-----+--------+------------+
 4 rows in set (0.00 sec)
 
+//Union 
+mysql> select name from employee
+    -> union
+    -> select name from employee;
++--------+
+| name   |
++--------+
+| Adam   |
+| Bob    |
+| Casey  |
+| Donald |
++--------+
+4 rows in set (0.01 sec)
+
+mysql> select name from employee
+    -> union all
+    -> select name from employee;
++--------+
+| name   |
++--------+
+| Adam   |
+| Bob    |
+| Casey  |
+| Donald |
+| Adam   |
+| Bob    |
+| Casey  |
+| Donald |
++--------+
+8 rows in set (0.00 sec)
+
+mysql> select avg(marks)from student;
++------------+
+| avg(marks) |
++------------+
+|    81.8571 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> select  name from student where marks > 81.8571;
++--------+
+| name   |
++--------+
+| Tush   |
+| Nachi  |
+| Piyush |
+| RK     |
++--------+
+4 rows in set (0.01 sec)
+==================================================================================================================================
+//MySql Views
+ 
+mysql> create view view1 as select rollno ,name , marks from student;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from view1;
++--------+---------+-------+
+| rollno | name    | marks |
++--------+---------+-------+
+|    101 | Ramu    |    77 |
+|    102 | Tush    |    88 |
+|    103 | Nachi   |    89 |
+|    104 | Piyush  |    88 |
+|    105 | RK      |    82 |
+|    106 | Sushant |    81 |
+|    107 | Swaraj  |    68 |
++--------+---------+-------+
+7 rows in set (0.01 sec)
+
+
 
 
