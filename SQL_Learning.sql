@@ -1048,6 +1048,93 @@ mysql> select * from view1;
 +--------+---------+-------+
 7 rows in set (0.01 sec)
 
+======================================================================================================
+//DATE Function 
 
+mysql> select Current_date();  //return current date of server 
++----------------+
+| Current_date() |
++----------------+
+| 2025-02-04     |
++----------------+
+1 row in set (0.00 sec)
 
+mysql> select now();    //retur current date and time
++---------------------+
+| now()               |
++---------------------+
+| 2025-02-04 12:03:50 |
++---------------------+
+1 row in set (0.00 sec)
 
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2025-02-04 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sysdate();
++---------------------+
+| sysdate()           |
++---------------------+
+| 2025-02-04 12:04:10 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select year("2019-10-15 09:34:21") as DATE;
++------+
+| DATE |
++------+
+| 2019 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select date("2019-10-15 09:34:21") as DATE;     //select date from give query 
++------------+
+| DATE       |
++------------+
+| 2019-10-15 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofmonth("2019-10-15 09:34:21") as DAY;  
++------+
+| DAY  |
++------+
+|   15 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select dayname("19-10-15 09:34:21") as DAY;     //select day from that month 
++---------+
+| DAY     |
++---------+
+| Tuesday |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select week("19-10-15 09:34:21") as DAY;   //return the week of the year 
++------+
+| DAY  |
++------+
+|   41 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select adddate("2019-07-15",interval 10 day) as Date;     //it return the date by addiding 10 days in the current date 
++------------+
+| Date       |
++------------+
+| 2019-07-25 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select subdate("2019-07-15",interval 10 month) as Date;    //it will return the 10 months previous record from the give date
++------------+
+| Date       |
++------------+
+| 2018-09-15 |
++------------+
+1 row in set (0.00 sec)
