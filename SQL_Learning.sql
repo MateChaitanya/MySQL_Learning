@@ -1138,3 +1138,11 @@ mysql> select subdate("2019-07-15",interval 10 month) as Date;    //it will retu
 | 2018-09-15 |
 +------------+
 1 row in set (0.00 sec)
+
+mysql> select datediff("2019-07-15","2019-02-10") as Date;   //it will return difference from 2 given dates 
++------+
+| Date |
++------+
+|  155 |
++------+
+1 row in set (0.01 sec)
